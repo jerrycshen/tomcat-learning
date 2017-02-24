@@ -21,6 +21,7 @@ public class PrimitiveServlet implements Servlet {
             throws ServletException, IOException {
         System.out.println("from service");
         PrintWriter out = response.getWriter();
+        // println 会自动刷新缓存，所以会输出，而print不会输出
         out.println("Hello. Roses are red.");
         out.print("Violets are blue.");
     }
