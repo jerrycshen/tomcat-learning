@@ -148,6 +148,7 @@ public final class HttpConnector
     /**
      * The set of processors that have been created but are not currently
      * being used to process a request.
+     * 维护一个HttpProcessor对象池，避免每次都创建新对象
      */
     private Stack processors = new Stack();
 
@@ -864,6 +865,7 @@ public final class HttpConnector
         HttpProcessor processor = new HttpProcessor(this, curProcessors++);
         if (processor instanceof Lifecycle) {
             try {
+                // 在这里启动 processor线程
                 ((Lifecycle) processor).start();
             } catch (LifecycleException e) {
                 log("newProcessor", e);
@@ -1036,6 +1038,7 @@ public final class HttpConnector
         log(sm.getString("httpConnector.starting"));
 
         thread = new Thread(this, threadName);
+        // 设置该线程为守护线程
         thread.setDaemon(true);
         thread.start();
 

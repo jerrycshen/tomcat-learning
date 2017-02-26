@@ -32,7 +32,7 @@ public class HttpConnector implements Runnable {
                 continue;
             }
             // Hand this socket off to an HttpProcessor
-            // 为每个请求创建一个HttpProcessor实例
+            // 为每个请求创建一个HttpProcessor实例,实际上只有一个processor在处理，并没有设计成多线程
             HttpProcessor processor = new HttpProcessor(this);
             processor.process(socket);
         }

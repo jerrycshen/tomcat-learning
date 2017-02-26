@@ -318,14 +318,22 @@ final class HttpProcessor
         // Wait for the Connector to provide a new Socket
         while (!available) {
             try {
+                // 等待新的请求的到来，与assign方法照应
                 wait();
             } catch (InterruptedException e) {
             }
         }
 
         // Notify the Connector that we have received this Socket
+        /**
+         * 使用局部变量的目的：可以在当前Socket对象处理完之前，继续接收下一个Socket对象，我猜是HTTP 1.1可以在同一个连接中接收多个请求的原因,不太理解
+         */
         Socket socket = this.socket;
         available = false;
+        /**
+         * 是为了防止出现在另一个Socket对象已经到达，而此时变量available的值还是true的情况，在这种情况下，
+         * “连接器线程”会在assign（）方法内循环，直到“处理器线程”调用了notifyAll（）方法
+         */
         notifyAll();
 
         if ((debug >= 1) && (socket != null))
@@ -1088,6 +1096,7 @@ final class HttpProcessor
             }
 
             // Finish up this request
+            // 可进行重用
             connector.recycle(this);
 
         }
