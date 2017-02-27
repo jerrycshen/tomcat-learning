@@ -73,6 +73,12 @@ package org.apache.catalina;
  * A typical Container may be associated with a single Mapper that processes
  * all requests to that Container, or a Mapper per request protocol that allows
  * the same Container to support multiple protocols at once.
+ * <p>
+ * 当有多个子容器的时候，就需要映射器来选择使用哪一个容器<br>
+ *     是容器的一个组件
+ *
+ *     servlet容器可以使用多个映射器来支持不同的协议，例如，servlet容器可以使用一个映射器对HTTP协议的请求进行映射，
+ *     使用另一个对HTTPS协议的请求进行映射
  *
  * @author Craig R. McClanahan
  * @version $Revision: 1.3 $ $Date: 2001/07/22 20:13:30 $
@@ -94,9 +100,8 @@ public interface Mapper {
      * Set the Container with which this Mapper is associated.
      *
      * @param container The newly associated Container
-     *
-     * @exception IllegalArgumentException if this Container is not
-     *  acceptable to this Mapper
+     * @throws IllegalArgumentException if this Container is not
+     *                                  acceptable to this Mapper
      */
     public void setContainer(Container container);
 
@@ -124,7 +129,7 @@ public interface Mapper {
      * identified, return <code>null</code> instead.
      *
      * @param request Request being processed
-     * @param update Update the Request to reflect the mapping selection?
+     * @param update  Update the Request to reflect the mapping selection?
      */
     public Container map(Request request, boolean update);
 

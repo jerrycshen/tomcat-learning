@@ -79,6 +79,8 @@ import javax.servlet.ServletException;
  * because a valve is what you use in a real world pipeline to control and/or
  * modify flows through it.
  *
+ * 阀是该接口的实例，用来处理接受到的请求
+ *
  * @author Craig R. McClanahan
  * @author Gunnar Rjnning
  * @author Peter Donald
@@ -138,6 +140,8 @@ public interface Valve {
      *     specified Response after the <code>invokeNext()</code> method has
      *     returned.
      * </ul>
+     *
+     * 可以处理该阀，并且通过ValueContext实例，处理下一个阀
      *
      * @param request The servlet request to be processed
      * @param response The servlet response to be created

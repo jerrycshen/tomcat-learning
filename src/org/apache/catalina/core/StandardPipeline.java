@@ -131,6 +131,7 @@ public class StandardPipeline
 
     /**
      * The basic Valve (if any) associated with this Pipeline.
+     * 基础阀,会在最后调用
      */
     protected Valve basic = null;
 
@@ -175,6 +176,7 @@ public class StandardPipeline
     /**
      * The set of Valves (not including the Basic one, if any) associated with
      * this Pipeline.
+     * 在所有Value结束后，调用默认Value
      */
     protected Valve valves[] = new Valve[0];
 
@@ -583,6 +585,10 @@ public class StandardPipeline
     // ------------------------------- StandardPipelineValveContext Inner Class
 
 
+    /**
+     * 内部类实现：
+     * 因此，该类可以访问管道的所有成员
+     */
     protected class StandardPipelineValveContext
         implements ValveContext {
 
@@ -639,6 +645,7 @@ public class StandardPipeline
             if (subscript < valves.length) {
                 valves[subscript].invoke(request, response, this);
             } else if ((subscript == valves.length) && (basic != null)) {
+                // 最后调用基础阀
                 basic.invoke(request, response, this);
             } else {
                 throw new ServletException

@@ -54,6 +54,8 @@ import javax.naming.directory.DirContext;
  *     Catalina is embedded in a larger server.
  * </ul>
  *
+ * 一个容器中可以配置很多组件
+ *
  * @author Craig R. McClanahan
  * @author Remy Maucherat
  * @version $Revision: 1.7 $ $Date: 2001/11/09 19:37:50 $
@@ -385,6 +387,7 @@ public interface Container {
      * Return the child Container that should be used to process this Request,
      * based upon its characteristics.  If no such child Container can be
      * identified, return <code>null</code> instead.
+     * 查找子容器
      *
      * @param request Request being processed
      * @param update Update the Request to reflect the mapping selection?

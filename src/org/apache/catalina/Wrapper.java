@@ -89,6 +89,8 @@ import javax.servlet.UnavailableException;
  * <code>addChild()</code> method should throw an
  * <code>IllegalArgumentException</code>.
  *
+ *  表示一个独立的servlet定义，是四个容器中最低级的容器
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.5 $ $Date: 2001/07/22 20:13:30 $
  */

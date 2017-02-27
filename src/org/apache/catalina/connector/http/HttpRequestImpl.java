@@ -12,6 +12,7 @@ import org.apache.catalina.util.Enumerator;
 
 /**
  * Implementation of <b>HttpRequest</b> specific to the HTTP connector.
+ * 注意其访问修饰符为默认的包访问，所以在包外，无法被强制转换，所以无法调用其自身方法，使得安全性提高
  *
  * @author Craig R. McClanahan
  * @author Remy Maucherat
