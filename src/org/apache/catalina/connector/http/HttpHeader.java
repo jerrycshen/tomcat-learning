@@ -3,6 +3,7 @@ package org.apache.catalina.connector.http;
 
 /**
  * HTTP header enum type.
+ * 使用字符数组操作，避免代价高昂的字符串操作
  *
  * @author Remy Maucherat
  * @version $Revision: 1.4 $ $Date: 2002/03/18 07:15:40 $

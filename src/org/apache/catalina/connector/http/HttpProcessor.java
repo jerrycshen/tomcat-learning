@@ -225,6 +225,8 @@ final class HttpProcessor
      * the server will send a preliminary 100 Continue response just after it
      * has successfully parsed the request headers, and before starting
      * reading the request entity body.
+     * HTTP/1.1 发送大量数据时候，会首先在请求头中发送"Expect: 100-continue"询问服务器是否
+     * 接受请求数据。如果服务器接受，则服务器会在对请求体解析之前进行相应，即发送 ack
      */
     private boolean sendAck = false;
 
@@ -325,12 +327,12 @@ final class HttpProcessor
         }
 
         // Notify the Connector that we have received this Socket
-        /**
-         * 使用局部变量的目的：可以在当前Socket对象处理完之前，继续接收下一个Socket对象，我猜是HTTP 1.1可以在同一个连接中接收多个请求的原因,不太理解
+        /*
+         * 使用局部变量的目的：可以在当前Socket对象处理完之前，继续接收下一个Socket对象.不太理解这样设计的目的，感觉没什么用
          */
         Socket socket = this.socket;
         available = false;
-        /**
+        /*
          * 是为了防止出现在另一个Socket对象已经到达，而此时变量available的值还是true的情况，在这种情况下，
          * “连接器线程”会在assign（）方法内循环，直到“处理器线程”调用了notifyAll（）方法
          */
@@ -542,6 +544,9 @@ final class HttpProcessor
                 log(" Header " + new String(header.name, 0, header.nameEnd)
                     + " = " + value);
 
+            /*
+                下面所有的比较都是字符数组的比较，不是字符串的比较，可以提高效率
+             */
             // Set the corresponding request headers
             if (header.equals(DefaultHeaders.AUTHORIZATION_NAME)) {
                 request.setAuthorization(value);
@@ -884,7 +889,13 @@ final class HttpProcessor
      * @param socket The socket on which we are connected to the client
      */
     private void process(Socket socket) {
+        /*
+         * 表示在处理过程中是否有错误发生
+         */
         boolean ok = true;
+        /*
+            表示是否需要向客户端发送响应
+         */
         boolean finishResponse = true;
         SocketInputStream input = null;
         OutputStream output = null;
@@ -904,6 +915,7 @@ final class HttpProcessor
 
             finishResponse = true;
 
+            //初始化操作
             try {
                 request.setStream(input);
                 request.setResponse(response);
@@ -924,6 +936,7 @@ final class HttpProcessor
 
                     parseConnection(socket);
                     parseRequest(input, output);
+                    // 只检查HTTP/1.0 及以上版本
                     if (!request.getRequest().getProtocol()
                         .startsWith("HTTP/0"))
                         parseHeaders(input);
@@ -940,6 +953,7 @@ final class HttpProcessor
             } catch (EOFException e) {
                 // It's very likely to be a socket disconnect on either the
                 // client or the server
+                // 由于socket已经断开，所以无须向客户端发送响应，所以将finishResponse置为false
                 ok = false;
                 finishResponse = false;
             } catch (ServletException e) {
@@ -973,14 +987,17 @@ final class HttpProcessor
             }
 
             // Ask our Container to process this request
+            // 交给容器处理请求
             try {
                 ((HttpServletResponse) response).setHeader
                     ("Date", FastHttpDateFormat.getCurrentDate());
+                // 前面没有任何错误的时候才能进行处理
                 if (ok) {
                     connector.getContainer().invoke(request, response);
                 }
             } catch (ServletException e) {
                 log("process.invoke", e);
+                // 服务器解析错误，发送500回送
                 try {
                     ((HttpServletResponse) response.getResponse()).sendError
                         (HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -1043,6 +1060,7 @@ final class HttpProcessor
 
         }
 
+        // 如果keepAlive 为true 并且没有发送错误，那么上述循环一直运行，否则shutdown
         try {
             shutdownInput(input);
             socket.close();

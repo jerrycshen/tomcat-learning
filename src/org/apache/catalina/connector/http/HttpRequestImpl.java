@@ -151,6 +151,7 @@ final class HttpRequestImpl
 
     /**
      * Allocate new header.
+     * 从字符数组池中取得
      *
      * @return an HttpHeader buffer allocated from the pool
      */
