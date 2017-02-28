@@ -1,0 +1,22 @@
+2017-02-28 21:52:43 HttpConnector Opening server socket on all host IP addresses
+2017-02-28 21:52:43 HttpConnector[8080] Starting background thread
+2017-02-28 21:52:43 HttpProcessor[8080][0] Starting background thread
+2017-02-28 21:52:43 HttpProcessor[8080][1] Starting background thread
+2017-02-28 21:52:43 HttpProcessor[8080][2] Starting background thread
+2017-02-28 21:52:43 HttpProcessor[8080][3] Starting background thread
+2017-02-28 21:52:43 HttpProcessor[8080][4] Starting background thread
+2017-02-28 21:52:43 starting Context
+2017-02-28 21:52:43 Context started
+2017-02-28 21:53:16 stopping Context
+2017-02-28 21:53:16 Context stopped
+2017-02-28 21:54:45 HttpConnector Opening server socket on all host IP addresses
+2017-02-28 21:54:45 HttpConnector[8080] Starting background thread
+2017-02-28 21:54:45 HttpProcessor[8080][0] Starting background thread
+2017-02-28 21:54:45 HttpProcessor[8080][1] Starting background thread
+2017-02-28 21:54:45 HttpProcessor[8080][2] Starting background thread
+2017-02-28 21:54:45 HttpProcessor[8080][3] Starting background thread
+2017-02-28 21:54:45 HttpProcessor[8080][4] Starting background thread
+2017-02-28 21:54:45 starting Context
+2017-02-28 21:54:45 Context started
+2017-02-28 21:54:47 stopping Context
+2017-02-28 21:54:47 Context stopped

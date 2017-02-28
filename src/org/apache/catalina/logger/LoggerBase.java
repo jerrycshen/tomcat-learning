@@ -249,7 +249,9 @@ public abstract class LoggerBase
      * log.  The name and type of the servlet log is specific to the
      * servlet container.  This message will be logged unconditionally.
      *
-     * @param message A <code>String</code> specifying the message to be
+     * 只有该方法没有给出具体实现，而由子类实现，但其实其他的log重载方法最终都会调用该log
+     *
+     * @param msg A <code>String</code> specifying the message to be
      *  written to the log file
      */
     public abstract void log(String msg);

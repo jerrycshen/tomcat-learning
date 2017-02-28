@@ -276,6 +276,7 @@ public class FileLogger
         String tsDate = tsString.substring(0, 10);
 
         // If the date has changed, switch log files
+        // FileLogger实例的整个生命周期中，log()方法可能会打开/关闭多个日志文件，每天新建一个
         if (!date.equals(tsDate)) {
             synchronized (this) {
                 if (!date.equals(tsDate)) {
