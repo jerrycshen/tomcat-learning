@@ -74,6 +74,8 @@ import org.apache.catalina.LifecycleListener;
  * Support class to assist in firing LifecycleEvent notifications to
  * registered LifecycleListeners.
  *
+ *  此工具类帮助组件管理监听器,由此类接管所有事件操作
+ *
  * @author Craig R. McClanahan
  * @version $Id: LifecycleSupport.java,v 1.3 2001/11/09 19:40:54 remm Exp $
  */

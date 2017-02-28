@@ -74,9 +74,12 @@ import java.util.EventObject;
  * on Containers, where these events replace the ContextInterceptor concept in
  * Tomcat 3.x.
  *
+ *  EventObject事件基类
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.3 $ $Date: 2001/07/22 20:13:30 $
  */
+
 
 public final class LifecycleEvent
     extends EventObject {
