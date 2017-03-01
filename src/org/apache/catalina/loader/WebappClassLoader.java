@@ -172,6 +172,8 @@ public class WebappClassLoader
      * components that have been integrated into the JDK for later versions,
      * but where the corresponding JAR files are required to run on
      * earlier versions.
+     *
+     * 此方法和下面方法会列出不允许载入的情况
      */
     private static final String[] triggers = {
         "javax.servlet.Servlet"                     // Servlet API
@@ -252,12 +254,17 @@ public class WebappClassLoader
     /**
      * The cache of ResourceEntry for classes and resources we have loaded,
      * keyed by resource name.
+     *
+     * 保存已经被加载过的资源
+     *
      */
     protected HashMap resourceEntries = new HashMap();
 
 
     /**
      * The list of not found resources.
+     *
+     * 缓存加载失败的资源
      */
     protected HashMap notFoundResources = new HashMap();
 
@@ -775,6 +782,7 @@ public class WebappClassLoader
     /**
      * Have one or more classes or resources been modified so that a reload
      * is appropriate?
+     * 监听文件和资源是否被修改
      */
     public boolean modified() {
 

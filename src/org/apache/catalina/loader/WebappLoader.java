@@ -660,9 +660,12 @@ public class WebappLoader
             }
 
             // Configure our repositories
+            // 这里看的不是很懂
             setRepositories();
+            // 与JSP编译相关
             setClassPath();
 
+            // 设置访问权限
             setPermissions();
 
             if (classLoader instanceof Lifecycle)
@@ -680,6 +683,7 @@ public class WebappLoader
         validatePackages();
 
         // Start our background thread if we are reloadable
+        // 如果设置了监听，则启动守护进程进行监听
         if (reloadable) {
             log(sm.getString("webappLoader.reloading"));
             try {
@@ -762,6 +766,8 @@ public class WebappLoader
 
     /**
      * Create associated classLoader.
+     *
+     * 由于返回的是WebappClassLoader类型，所以如果想要使用自己的类加载器，必须继承该类
      */
     private WebappClassLoader createClassLoader()
         throws Exception {
@@ -787,6 +793,8 @@ public class WebappLoader
 
     /**
      * Log a message on the Logger associated with our Container (if any)
+     *
+     * 如果没设置日志记录器，则屏幕输出
      *
      * @param message Message to be logged
      */
@@ -959,6 +967,7 @@ public class WebappLoader
 
         if (!(container instanceof Context))
             return;
+        // servletContext 其实是一个外观类，只提供了访问方法
         ServletContext servletContext =
             ((Context) container).getServletContext();
         if (servletContext == null)
@@ -1351,6 +1360,8 @@ public class WebappLoader
 
             // Handle a need for reloading
             notifyContext();
+
+            // break? 难道context reload会重启线程?
             break;
 
         }

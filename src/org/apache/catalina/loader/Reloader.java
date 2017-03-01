@@ -70,6 +70,8 @@ package org.apache.catalina.loader;
  * optionally implement to support the auto-reload functionality of
  * the classloader associated with the context.
  *
+ * 为了支持类的自动重载功能
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.5 $ $Date: 2001/07/22 20:25:10 $
  */

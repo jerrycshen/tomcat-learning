@@ -165,6 +165,11 @@ public interface Loader {
 
     /**
      * Return the reloadable flag for this Loader.
+     *
+     * 这两个方法指明载入器是否支持自动重载，默认情况下禁用了，但可以在server.xml中进行配置
+     * <Context docBase="" path="" reloadable="true"/>
+     *
+     * 在开发阶段可将设为true，有助于调试，但在发布阶段设为false，减小服务器运行负荷
      */
     public boolean getReloadable();
 
@@ -191,6 +196,9 @@ public interface Loader {
     /**
      * Add a new repository to the set of repositories for this class loader.
      *
+     * WEB-INF/classes目录和WEB-INF/lib目录是作为仓库添加到载入器中，通过此方法可以添加一个
+     * 新的仓库
+     *
      * @param repository Repository to be added
      */
     public void addRepository(String repository);
@@ -206,6 +214,12 @@ public interface Loader {
     /**
      * Has the internal repository associated with this Loader been modified,
      * such that the loaded classes should be reloaded?
+     *
+     * 如果Context容器中的一个或多个类被修改了，载入器也可以支持对类的自动重载。这样servlet程序员就可以重新编译
+     * servlet类极其相关类，并将其重新载入而不需要重新启动TOMCAT。使用该字段来支持类的自动重载。
+     * 在载入器的具体实现中，如果仓库中一个或多个类被修改了，那么该字段必须返回true才能提供自动重载功能<br>
+     *
+     *  但需要注意的是，载入器本身并不能自动重载。相反，它会调用Context接口的reload方法来实现
      */
     public boolean modified();
 

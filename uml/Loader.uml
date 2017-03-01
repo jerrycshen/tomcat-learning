@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.catalina.Loader</OriginalElement>
+  <nodes>
+    <node x="-164.5" y="-81.0">java.security.SecureClassLoader</node>
+    <node x="-10.0" y="79.0">org.apache.catalina.loader.WebappClassLoader</node>
+    <node x="62.25" y="-1.0">org.apache.catalina.loader.Reloader</node>
+    <node x="-156.5" y="-1.0">java.net.URLClassLoader</node>
+    <node x="-272.0" y="154.0">org.apache.catalina.Loader</node>
+    <node x="-297.0" y="79.0">sun.misc.Launcher.ExtClassLoader</node>
+    <node x="-297.0" y="234.0">org.apache.catalina.loader.WebappLoader</node>
+    <node x="-145.0" y="-161.0">java.lang.ClassLoader</node>
+    <node x="-157.0" y="79.0">sun.misc.Launcher.AppClassLoader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.net.URLClassLoader" target="java.security.SecureClassLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappLoader" target="org.apache.catalina.Loader">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappLoader" target="java.lang.ClassLoader">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="java.security.SecureClassLoader" target="java.lang.ClassLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappClassLoader" target="org.apache.catalina.loader.Reloader">
+      <point x="38.25" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="sun.misc.Launcher.ExtClassLoader" target="java.net.URLClassLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="-237.0" y="54.0" />
+      <point x="-135.5" y="54.0" />
+      <point x="-42.0" y="15.0" />
+    </edge>
+    <edge source="java.lang.ClassLoader" target="java.lang.ClassLoader">
+      <point x="0.0" y="0.0" />
+      <point x="-93.5" y="-186.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappLoader" target="org.apache.catalina.loader.WebappClassLoader">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="sun.misc.Launcher.AppClassLoader" target="java.net.URLClassLoader">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappClassLoader" target="java.lang.ClassLoader">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.catalina.loader.WebappClassLoader" target="java.net.URLClassLoader">
+      <point x="-38.25" y="-15.0" />
+      <point x="28.25" y="54.0" />
+      <point x="-51.5" y="54.0" />
+      <point x="42.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="36.5" y="15.0" />
+  <SelectedNodes>
+    <node>org.apache.catalina.loader.WebappLoader</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

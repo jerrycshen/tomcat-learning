@@ -70,6 +70,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleListener;
@@ -87,8 +88,8 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class FileLogger
-    extends LoggerBase
-    implements Lifecycle {
+        extends LoggerBase
+        implements Lifecycle {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -111,7 +112,7 @@ public class FileLogger
      * The descriptive information about this implementation.
      */
     protected static final String info =
-        "org.apache.catalina.logger.FileLogger/1.0";
+            "org.apache.catalina.logger.FileLogger/1.0";
 
 
     /**
@@ -130,7 +131,7 @@ public class FileLogger
      * The string manager for this package.
      */
     private StringManager sm =
-        StringManager.getManager(Constants.Package);
+            StringManager.getManager(Constants.Package);
 
 
     /**
@@ -252,7 +253,7 @@ public class FileLogger
         boolean oldTimestamp = this.timestamp;
         this.timestamp = timestamp;
         support.firePropertyChange("timestamp", new Boolean(oldTimestamp),
-                                   new Boolean(this.timestamp));
+                new Boolean(this.timestamp));
 
     }
 
@@ -266,7 +267,7 @@ public class FileLogger
      * servlet container.
      *
      * @param msg A <code>String</code> specifying the message to be written
-     *  to the log file
+     *            to the log file
      */
     public void log(String msg) {
 
@@ -331,7 +332,7 @@ public class FileLogger
         // Open the current log file
         try {
             String pathname = dir.getAbsolutePath() + File.separator +
-                prefix + date + suffix;
+                    prefix + date + suffix;
             writer = new PrintWriter(new FileWriter(pathname, true), true);
         } catch (IOException e) {
             writer = null;
@@ -383,15 +384,15 @@ public class FileLogger
      * component.  This method should be called after <code>configure()</code>,
      * and before any of the public methods of the component are utilized.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that prevents this component from being used
      */
     public void start() throws LifecycleException {
 
         // Validate and update our current component state
         if (started)
             throw new LifecycleException
-                (sm.getString("fileLogger.alreadyStarted"));
+                    (sm.getString("fileLogger.alreadyStarted"));
         lifecycle.fireLifecycleEvent(START_EVENT, null);
         started = true;
 
@@ -403,15 +404,15 @@ public class FileLogger
      * component.  This method should be the last one called on a given
      * instance of this component.
      *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
+     * @throws LifecycleException if this component detects a fatal error
+     *                            that needs to be reported
      */
     public void stop() throws LifecycleException {
 
         // Validate and update our current component state
         if (!started)
             throw new LifecycleException
-                (sm.getString("fileLogger.notStarted"));
+                    (sm.getString("fileLogger.notStarted"));
         lifecycle.fireLifecycleEvent(STOP_EVENT, null);
         started = false;
 
