@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.catalina.Request</OriginalElement>
+  <nodes>
+    <node x="-65.0" y="8.0">org.apache.catalina.connector.RequestFacade</node>
+    <node x="-228.0" y="8.0">javax.servlet.http.HttpServletRequest</node>
+    <node x="-211.84722222222223" y="-72.0">javax.servlet.ServletRequest</node>
+    <node x="-479.0" y="8.0">org.apache.catalina.HttpRequest</node>
+    <node x="-413.47222222222223" y="-72.0">org.apache.catalina.Request</node>
+    <node x="-367.5" y="88.0">org.apache.catalina.connector.HttpRequestBase</node>
+    <node x="-355.0" y="8.0">org.apache.catalina.connector.RequestBase</node>
+    <node x="-366.5" y="168.0">org.apache.catalina.connector.http.HttpRequestImpl</node>
+    <node x="-131.72222222222223" y="88.0">org.apache.catalina.connector.HttpRequestFacade</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.catalina.connector.HttpRequestBase" target="org.apache.catalina.HttpRequest">
+      <point x="-44.0" y="-15.0" />
+      <point x="-345.5" y="63.0" />
+      <point x="-427.0" y="63.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpRequestBase" target="javax.servlet.http.HttpServletRequest">
+      <point x="44.0" y="-15.0" />
+      <point x="-257.5" y="63.0" />
+      <point x="-192.25" y="63.0" />
+      <point x="-35.75" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpRequestBase" target="org.apache.catalina.connector.RequestBase">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.http.HttpRequestImpl" target="org.apache.catalina.connector.HttpRequestBase">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.HttpRequest" target="org.apache.catalina.Request">
+      <point x="0.0" y="-15.0" />
+      <point x="-427.0" y="-17.0" />
+      <point x="-393.72222222222223" y="-17.0" />
+      <point x="-19.75" y="15.0" />
+    </edge>
+    <edge source="javax.servlet.http.HttpServletRequest" target="javax.servlet.ServletRequest">
+      <point x="0.0" y="-15.0" />
+      <point x="-156.5" y="-17.0" />
+      <point x="-152.84722222222223" y="-17.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpRequestFacade" target="javax.servlet.http.HttpServletRequest">
+      <point x="-36.25" y="-15.0" />
+      <point x="-95.47222222222223" y="63.0" />
+      <point x="-120.75" y="63.0" />
+      <point x="35.75" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.RequestFacade" target="javax.servlet.ServletRequest">
+      <point x="0.0" y="-15.0" />
+      <point x="-5.0" y="-17.0" />
+      <point x="-113.51388888888891" y="-17.0" />
+      <point x="39.333333333333314" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpRequestFacade" target="org.apache.catalina.connector.RequestFacade">
+      <point x="36.25" y="-15.0" />
+      <point x="-22.97222222222223" y="63.0" />
+      <point x="-5.0" y="63.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.RequestBase" target="javax.servlet.ServletRequest">
+      <point x="26.75" y="-15.0" />
+      <point x="-274.75" y="-17.0" />
+      <point x="-192.18055555555554" y="-17.0" />
+      <point x="-39.333333333333314" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.RequestBase" target="org.apache.catalina.Request">
+      <point x="-26.75" y="-15.0" />
+      <point x="-328.25" y="-17.0" />
+      <point x="-354.22222222222223" y="-17.0" />
+      <point x="19.75" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="-3.0" y="15.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

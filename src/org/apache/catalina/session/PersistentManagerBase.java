@@ -118,6 +118,8 @@ public abstract class PersistentManagerBase
 
     /**
      * The maximum number of active Sessions allowed, or -1 for no limit.
+     *
+     * 超过此限制，会进行换出
      */
     private int maxActiveSessions = -1;
 
@@ -173,6 +175,8 @@ public abstract class PersistentManagerBase
 
 
     /**
+     * idle: 空闲
+     *
      * Minimum time a session must be idle before it is swapped to disk.
      * This overrides maxActiveSessions, to prevent thrashing if there are lots
      * of active sessions. Setting to -1 means it's ignored.
@@ -183,6 +187,7 @@ public abstract class PersistentManagerBase
      * The maximum time a session may be idle before it should be swapped
      * to file just on general principle. Setting this to -1 means sessions
      * should not be forced out.
+     * 最大空闲时间
      */
     private int maxIdleSwap = -1;
 
@@ -572,6 +577,7 @@ public abstract class PersistentManagerBase
             return (session);
 
         // See if the Session is in the Store
+        // 如果内存中找不到，则到文件中查找
         session = swapIn(id);
         return (session);
 
@@ -1025,6 +1031,7 @@ public abstract class PersistentManagerBase
         int toswap = sessions.length - getMaxActiveSessions();
         long timeNow = System.currentTimeMillis();
 
+        // 替换最久为访问的
         for (int i = 0; i < sessions.length && toswap > 0; i++) {
             int timeIdle = // Truncate, do not round up
                 (int) ((timeNow - sessions[i].getLastAccessedTime()) / 1000L);
@@ -1047,6 +1054,7 @@ public abstract class PersistentManagerBase
 
     /**
      * Back up idle sessions.
+     * 备份超过在内存的最大驻留时间
      */
     protected void processMaxIdleBackups() {
 

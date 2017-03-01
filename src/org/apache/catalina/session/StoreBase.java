@@ -285,6 +285,8 @@ public abstract class StoreBase
      * saved in our store are subject of being expired. If so expire
      * the Session and remove it from the Store.
      *
+     * PersistentManger 里面的线程检查的是，是否在内存中超时，是否内存已满。而在这里才检查是否已经超时
+     *
      */
     protected void processExpires() {
         long timeNow = System.currentTimeMillis();

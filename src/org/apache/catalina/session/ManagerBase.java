@@ -200,6 +200,8 @@ public abstract class ManagerBase implements Manager {
     /**
      * The set of currently active Sessions for this Manager, keyed by
      * session identifier.
+     *
+     * session pool
      */
     protected HashMap sessions = new HashMap();
 

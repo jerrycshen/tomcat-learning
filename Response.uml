@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.catalina.Response</OriginalElement>
+  <nodes>
+    <node x="444.0" y="80.0">org.apache.catalina.connector.ResponseFacade</node>
+    <node x="0.0" y="80.0">org.apache.catalina.HttpResponse</node>
+    <node x="121.50000000000006" y="160.0">org.apache.catalina.connector.HttpResponseBase</node>
+    <node x="69.69444444444446" y="0.0">org.apache.catalina.Response</node>
+    <node x="287.56944444444446" y="0.0">javax.servlet.ServletResponse</node>
+    <node x="271.0" y="80.0">javax.servlet.http.HttpServletResponse</node>
+    <node x="122.50000000000009" y="240.0">org.apache.catalina.connector.http.HttpResponseImpl</node>
+    <node x="373.94444444444446" y="160.0">org.apache.catalina.connector.HttpResponseFacade</node>
+    <node x="134.00000000000003" y="80.0">org.apache.catalina.connector.ResponseBase</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.catalina.connector.HttpResponseBase" target="org.apache.catalina.HttpResponse">
+      <point x="-47.33333333333337" y="-15.0" />
+      <point x="145.16666666666669" y="135.0" />
+      <point x="57.0" y="135.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.ResponseBase" target="javax.servlet.ServletResponse">
+      <point x="29.25" y="-15.0" />
+      <point x="221.75000000000003" y="55.0" />
+      <point x="308.90277777777777" y="55.0" />
+      <point x="-42.666666666666686" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.ResponseFacade" target="javax.servlet.ServletResponse">
+      <point x="0.0" y="-15.0" />
+      <point x="509.0" y="55.0" />
+      <point x="394.2361111111111" y="55.0" />
+      <point x="42.66666666666663" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.HttpResponse" target="org.apache.catalina.Response">
+      <point x="0.0" y="-15.0" />
+      <point x="57.0" y="55.0" />
+      <point x="91.94444444444446" y="55.0" />
+      <point x="-22.25" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpResponseFacade" target="org.apache.catalina.connector.ResponseFacade">
+      <point x="38.75" y="-15.0" />
+      <point x="490.19444444444446" y="135.0" />
+      <point x="509.0" y="135.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpResponseBase" target="javax.servlet.http.HttpServletResponse">
+      <point x="47.333333333333314" y="-15.0" />
+      <point x="239.83333333333337" y="135.0" />
+      <point x="309.25" y="135.0" />
+      <point x="-38.25" y="15.0" />
+    </edge>
+    <edge source="javax.servlet.http.HttpServletResponse" target="javax.servlet.ServletResponse">
+      <point x="0.0" y="-15.0" />
+      <point x="347.5" y="55.0" />
+      <point x="351.56944444444446" y="55.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.http.HttpResponseImpl" target="org.apache.catalina.connector.HttpResponseBase">
+      <point x="-2.8421709430404007E-14" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.ResponseBase" target="org.apache.catalina.Response">
+      <point x="-29.25" y="-15.0" />
+      <point x="163.25000000000003" y="55.0" />
+      <point x="136.44444444444446" y="55.0" />
+      <point x="22.25" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpResponseFacade" target="javax.servlet.http.HttpServletResponse">
+      <point x="-38.75" y="-15.0" />
+      <point x="412.69444444444446" y="135.0" />
+      <point x="385.75" y="135.0" />
+      <point x="38.25" y="15.0" />
+    </edge>
+    <edge source="org.apache.catalina.connector.HttpResponseBase" target="org.apache.catalina.connector.ResponseBase">
+      <point x="-2.8421709430404007E-14" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="44.5" y="15.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

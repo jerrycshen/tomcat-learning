@@ -116,6 +116,9 @@ import org.apache.catalina.util.StringManager;
  * @version $Revision: 1.31 $ $Date: 2002/07/23 12:49:11 $
  */
 
+/**
+ * 实现序列化
+ */
 class StandardSession
     implements HttpSession, Session, Serializable {
 
@@ -244,6 +247,7 @@ class StandardSession
      * The maximum time interval, in seconds, between client requests before
      * the servlet container may invalidate this session.  A negative time
      * indicates that the session should never time out.
+     * 设置session过期时间
      */
     private int maxInactiveInterval = -1;
 

@@ -783,6 +783,8 @@ public class StandardManager
     /**
      * Start the background thread that will periodically check for
      * session timeouts.
+     *
+     * 启用线程检测session是否已经过期
      */
     private void threadStart() {
 
