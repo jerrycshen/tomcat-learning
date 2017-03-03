@@ -77,6 +77,8 @@ import java.security.cert.X509Certificate;
  * level, but will typically only be attached to a Context, or higher level,
  * Container.
  *
+ * 领域对象，用来对用户进行身份验证的组件
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.4 $ $Date: 2001/07/30 20:04:04 $
  */

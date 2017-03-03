@@ -75,6 +75,10 @@ import org.apache.catalina.Realm;
  * Generic implementation of <strong>java.security.Principal</strong> that
  * is available for use by <code>Realm</code> implementations.
  *
+ * GenericPrincipal 始终与一个领域对象相关联。
+ *
+ * 该实例必须有1个用户名和密码对，所对应的角色是可选的
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.4 $ $Date: 2001/10/27 20:29:03 $
  */
