@@ -95,6 +95,8 @@ import org.apache.tomcat.util.log.SystemLogHandler;
  * an individual servlet definition.  No child Containers are allowed, and
  * the parent Container must be a Context.
  *
+ * 此外，该类还实现了ServletConfig接口，为servlet的init方法提供参数
+ *
  * @author Craig R. McClanahan
  * @author Remy Maucherat
  * @version $Revision: 1.40 $ $Date: 2002/08/29 10:37:55 $
@@ -639,6 +641,7 @@ public final class StandardWrapper
               (sm.getString("standardWrapper.unloading", getName()));
 
         // If not SingleThreadedModel, return the same instance every time
+        // 此时假设servlet类的service方法在多线程环境中是线程安全的
         if (!singleThreadModel) {
 
             // Load and initialize our instance if necessary
@@ -666,6 +669,12 @@ public final class StandardWrapper
 
         }
 
+        /**
+         * 实现SingleThreadModel接口后，StandardWrapper实例必须保证每个时刻只能有一个线程还行STM servlet的service方法
+         * 使用servlet实例池<br>
+         *     需要注意的是： 实现了该接口，并不能防止servlet访问共享资源造成的同步问题，例如访问
+         *     类的静态变量或访问servlet作用域之外的类
+         */
         synchronized (instancePool) {
 
             while (countAllocated >= nInstances) {
@@ -852,6 +861,8 @@ public final class StandardWrapper
             ClassLoader classLoader = loader.getClassLoader();
 
             // Special case class loader for a container provided servlet
+            // 由于容器提供了一些用于访问servlet容器内部数据的专用servlet类，如果某个是这种类的话，
+            // 需要换一种classloader进行加载
             if (isContainerProvidedServlet(actualClass)) {
                 classLoader = this.getClass().getClassLoader();
                 log(sm.getString

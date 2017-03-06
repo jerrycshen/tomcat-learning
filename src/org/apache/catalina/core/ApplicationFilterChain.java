@@ -200,6 +200,8 @@ final class ApplicationFilterChain implements FilterChain {
             this.iterator = filters.iterator();
 
         // Call the next filter if there is one
+        // 这里只是调用第一个过滤器，并没有通过循环调用全部，而是由程序员通过
+        // chain.doFilter(request, response) 显示调用
         if (this.iterator.hasNext()) {
             ApplicationFilterConfig filterConfig =
               (ApplicationFilterConfig) iterator.next();
@@ -237,6 +239,7 @@ final class ApplicationFilterChain implements FilterChain {
         }
 
         // We fell off the end of the chain -- call the servlet instance
+        // 如果是过滤器链中的最后一个过滤器，则会调用servlet的service方法
         try {
             support.fireInstanceEvent(InstanceEvent.BEFORE_SERVICE_EVENT,
                                       servlet, request, response);
@@ -302,7 +305,7 @@ final class ApplicationFilterChain implements FilterChain {
     /**
      * Set the servlet that will be executed at the end of this chain.
      *
-     * @param wrapper The Wrapper for the servlet to be executed
+     * @param servlet The Wrapper for the servlet to be executed
      */
     void setServlet(Servlet servlet) {
 
