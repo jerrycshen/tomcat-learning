@@ -128,6 +128,9 @@ final class StandardContextValve
 
 
     /**
+     *
+     * 处理从连接器中接收到的每个HTTP请求<br>
+     *
      * Select the appropriate child Wrapper to process this request,
      * based on the specified request URI.  If no matching Wrapper can
      * be found, return an appropriate HTTP error.

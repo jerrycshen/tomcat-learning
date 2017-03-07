@@ -189,11 +189,17 @@ public final class StandardContextMapper
             return (request.getWrapper());
 
         // Identify the context-relative URI to be mapped
+        /**
+         * 关于路径的一些说明：<br>
+         *     URI：http://localhost:8080/news/main/list.jsp
+         *     request.getContextPath() -> /news <br>
+         *     request.getServletPath() -> /main/list.jsp <br>
+         *     request.getRequestURI()  -> /news/main/list.jsp  <br>
+         */
         String contextPath =
             ((HttpServletRequest) request.getRequest()).getContextPath();
         String requestURI = ((HttpRequest) request).getDecodedRequestURI();
         String relativeURI = requestURI.substring(contextPath.length());
-
 
         if (debug >= 1)
             context.log("Mapping contextPath='" + contextPath +
@@ -206,6 +212,9 @@ public final class StandardContextMapper
         String pathInfo = null;
         String name = null;
 
+        /**
+         * 会根据匹配规则找到一个最适合的Wrapper实例
+         */
         // Rule 1 -- Exact Match
         if (wrapper == null) {
             if (debug >= 2)

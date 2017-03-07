@@ -1139,6 +1139,14 @@ public abstract class ContainerBase
 
 
     /**
+     * 在Tomcat5中，为了节省资源，使用了不同的方法，以前每个组件如果有后台任务的话，那么会自己启用一个线程.<br>
+     *     现在，所有后台处理都会共享同一个线程，若某个组件或servlet容器需要周期性地执行一个操作，只需要将代码写到
+     *     backgroundProcess()方法即可。
+     *     这个共享线程在ContainerBase中创建，在start方法中调用线程启动.
+     *     其run方法中有一个while循环，周期性调用其processChildren方法。该方法会调用自身的backgroundProcess方法，
+     *     和其每个子容器的processChildren方法。通过实现backgroundProcess方法，就可以共享线程来执行
+     *
+     * <br>
      * Prepare for active use of the public methods of this Component.
      *
      * @exception LifecycleException if this component detects a fatal error

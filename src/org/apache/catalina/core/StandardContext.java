@@ -176,6 +176,7 @@ public class StandardContext
 
 
     /**
+     * 表明容器是否可用
      * The application available flag for this Context.
      */
     private boolean available = false;
@@ -195,6 +196,7 @@ public class StandardContext
 
 
     /**
+     * 容器是否已经正确配置，如果为false，容器不会启动，无法提供HTTP服务
      * The "correctly configured" flag for this Context.
      */
     private boolean configured = false;
@@ -304,6 +306,7 @@ public class StandardContext
 
 
     /**
+     * 默认的映射类
      * The Java class name of the default Mapper class for this Container.
      */
     private String mapperClass =
@@ -338,6 +341,7 @@ public class StandardContext
 
 
     /**
+     * 是否支持重载
      * The reloadable flag for this web application.
      */
     private boolean reloadable = false;
@@ -2354,6 +2358,7 @@ public class StandardContext
         throws IOException, ServletException {
 
         // Wait if we are reloading
+        // 容器是否在重载
         while (getPaused()) {
             try {
                 Thread.sleep(1000);
@@ -2363,6 +2368,7 @@ public class StandardContext
         }
 
         // Normal request processing
+        // 对于tomcat日志系统不太了解
         if (swallowOutput) {
             try {
                 SystemLogHandler.startCapture();
@@ -3396,6 +3402,7 @@ public class StandardContext
         }
 
         // Initialize character set mapper
+        // 字符映射器
         getCharsetMapper();
 
         // Post work directory
@@ -3424,6 +3431,7 @@ public class StandardContext
         if (debug >= 1)
             log("Processing standard container startup");
 
+        // 启动与该容器相关联的组件
         if (ok) {
 
             try {
@@ -3472,6 +3480,7 @@ public class StandardContext
                 // Notify our interested LifecycleListeners
                 lifecycle.fireLifecycleEvent(START_EVENT, null);
 
+                // 启动session 管理器
                 if ((manager != null) && (manager instanceof Lifecycle))
                     ((Lifecycle) manager).start();
 
@@ -3481,6 +3490,9 @@ public class StandardContext
             }
 
         }
+
+        // 检查是否已经配置成功
+        // 注意的是configure 字段由生命周期函数的监听器设置
         if (!getConfigured())
             ok = false;
 
@@ -3510,6 +3522,7 @@ public class StandardContext
         }
 
         // Load and initialize all "load on startup" servlets
+        // 载入那些需要在启动时就载入的子容器
         if (ok)
             loadOnStartup(findChildren());
 
@@ -3520,10 +3533,13 @@ public class StandardContext
         if (ok) {
             if (debug >= 1)
                 log("Starting completed");
+
+            // 如果与容器关联的组件都正确启动了，可以提供服务了，设为true
             setAvailable(true);
         } else {
             log(sm.getString("standardContext.startFailed"));
             try {
+                // 启动失败，调用stop方法结束
                 stop();
             } catch (Throwable t) {
                 log(sm.getString("standardContext.startCleanup"), t);

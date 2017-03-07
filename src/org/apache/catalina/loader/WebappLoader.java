@@ -468,6 +468,9 @@ public class WebappLoader
     /**
      * Set the reloadable flag for this Loader.
      *
+     *  false -> true: start thread
+     *  true -> false: stop thread
+     *
      * @param reloadable The new reloadable flag
      */
     public void setReloadable(boolean reloadable) {
