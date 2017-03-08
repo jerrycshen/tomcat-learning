@@ -87,6 +87,9 @@ import org.apache.catalina.deploy.NamingResources;
  * register the (singleton) instance with the <code>ServerFactory</code>
  * class in its constructor(s).
  *
+ * 以前我们手动设置将连接器与容器相关联，然后分别启动连接器与容器。
+ * 现在通过Server 和 Service方法自动将多个连接器与一个容器关联起来，并且交个Server统一处理生命周期
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.10 $ $Date: 2002/03/06 06:49:10 $
  */

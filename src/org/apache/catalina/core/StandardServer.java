@@ -498,6 +498,8 @@ public final class StandardServer
 
     /**
      * Wait until a proper shutdown command is received, then return.
+     * 该方法创建一个ServerSocket对象，监听8005端口，并在while循环中调用它的accept（）方法
+     * 然后将接收到的信息与关闭命令匹配，如果相同关闭socket
      */
     public void await() {
 
@@ -2170,6 +2172,7 @@ public final class StandardServer
     public void start() throws LifecycleException {
 
         // Validate and update our current component state
+        // started变量防止服务器组件重复启动
         if (started)
             throw new LifecycleException
                 (sm.getString("standardServer.start.started"));
@@ -2198,6 +2201,8 @@ public final class StandardServer
      * component.  This method should be the last one called on a given
      * instance of this component.  It should also send a LifecycleEvent
      * of type STOP_EVENT to any registered listeners.
+     *
+     * initialized并没有被置为false，所以服务器组件关闭后再启动，是不会再次进行初始化的
      *
      * @exception LifecycleException if this component detects a fatal error
      *  that needs to be reported

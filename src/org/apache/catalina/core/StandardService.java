@@ -197,6 +197,7 @@ public final class StandardService
                 ;
             }
         }
+        // 因为一个容器可以关联多个连接器，所以这里为每个连接器设置容器
         synchronized (connectors) {
             for (int i = 0; i < connectors.length; i++)
                 connectors[i].setContainer(this.container);
@@ -306,6 +307,7 @@ public final class StandardService
     public void addConnector(Connector connector) {
 
         synchronized (connectors) {
+            // 之所以这里也设置关联，是因为这样做保证了 客户端调用的时候，无需指定顺序，任何顺序都能满足
             connector.setContainer(this.container);
             connector.setService(this);
             Connector results[] = new Connector[connectors.length + 1];
@@ -321,6 +323,7 @@ public final class StandardService
                 }
             }
 
+            // 注意started变量的作用
             if (started && (connector instanceof Lifecycle)) {
                 try {
                     ((Lifecycle) connector).start();
@@ -490,6 +493,7 @@ public final class StandardService
         started = true;
 
         // Start our defined Container first
+        // 先启动容器
         if (container != null) {
             synchronized (container) {
                 if (container instanceof Lifecycle) {

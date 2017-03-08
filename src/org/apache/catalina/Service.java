@@ -75,6 +75,8 @@ package org.apache.catalina;
  * completely independent of each other and share only the basic JVM facilities
  * and classes on the system class path.
  *
+ * 一个服务组件可以有一个servlet容器和多个连接器实例
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.7 $ $Date: 2001/11/06 22:33:46 $
  */
