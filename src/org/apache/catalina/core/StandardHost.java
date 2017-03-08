@@ -612,6 +612,7 @@ public class StandardHost
             log("  Trying the longest context path prefix");
         Context context = null;
         String mapuri = uri;
+        // 循环检查
         while (true) {
             context = (Context) findChild(mapuri);
             if (context != null)

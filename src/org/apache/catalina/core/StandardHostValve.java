@@ -164,6 +164,8 @@ final class StandardHostValve
             (context.getLoader().getClassLoader());
 
         // Update the session last access time for our session (if any)
+        // 修改session的访问时间
+        // 回顾一下，session会通过request.getSession()方法创建或者获取,一旦创建之后，后台会有线程不断的检查是否过期
         HttpServletRequest hreq = (HttpServletRequest) request.getRequest();
         String sessionId = hreq.getRequestedSessionId();
         if (sessionId != null) {

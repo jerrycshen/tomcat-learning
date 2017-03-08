@@ -634,6 +634,7 @@ public class ApplicationContext
             String fullPath = context.getName() + path;
 
             // this is the problem. Host must not be null
+            // 如果使用ContextConfig实例来进行配置的话，Context实例必须有一个Host实例作为其父容器
             String hostName = context.getParent().getName();
 
             try {
