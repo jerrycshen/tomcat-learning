@@ -164,6 +164,8 @@ public class Catalina {
     /**
      * The instance main program.
      *
+     * user.dir属性的值指明了用户的工作目录，即，会从哪个目录下调用java命令
+     *
      * @param args Command line arguments
      */
     public void process(String args[]) {
@@ -225,6 +227,9 @@ public class Catalina {
             return (false);
         }
 
+        /**
+         * 第一个参数是start或者stop
+         */
         for (int i = 0; i < args.length; i++) {
             if (isConfig) {
                 configFile = args[i];
@@ -282,6 +287,7 @@ public class Catalina {
                                  "org.apache.catalina.core.StandardServer",
                                  "className");
         digester.addSetProperties("Server");
+        // 将Server对象压入Digester对象的内部栈中，并与栈中的下一个对象相关联，调用下一个对象的setServer方法与其关联
         digester.addSetNext("Server",
                             "setServer",
                             "org.apache.catalina.Server");
@@ -373,6 +379,7 @@ public class Catalina {
             digester.setDebug(999);
 
         // Configure the rules we need for shutting down
+        // 关闭Digester对象只对根元素感兴趣
         digester.addObjectCreate("Server",
                                  "org.apache.catalina.core.StandardServer",
                                  "className");
@@ -440,6 +447,7 @@ public class Catalina {
                 new InputSource("file://" + file.getAbsolutePath());
             FileInputStream fis = new FileInputStream(file);
             is.setByteStream(fis);
+            // 是Catalina对象成为Digester对象的内部栈的第一个对象
             digester.push(this);
             digester.parse(is);
             fis.close();
