@@ -118,6 +118,8 @@ import org.xml.sax.SAXParseException;
  * Startup event listener for a <b>Context</b> that configures the properties
  * of that Context, and the associated defined servlets.
  *
+ * 需要解析web.xml
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.66 $ $Date: 2002/06/23 20:35:30 $
  */
@@ -491,6 +493,7 @@ public final class ContextConfig
         url = ContextConfig.class.getResource(Constants.WebDtdResourcePath_23);
         webDigester.register(Constants.WebDtdPublicId_23,
                              url.toString());
+        // 设置解析时需要的规则
         webDigester.addRuleSet(new WebRuleSet());
         return (webDigester);
 
@@ -622,6 +625,7 @@ public final class ContextConfig
         }
 
         // Process the default and application web.xml files
+        // 一共有两个web.xml 一个在conf/web.xml 还一个为WEB-INF/web.xml
         defaultConfig();
         applicationConfig();
         if (ok) {
