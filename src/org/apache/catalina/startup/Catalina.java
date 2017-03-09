@@ -607,6 +607,7 @@ public class Catalina {
 
     /**
      * Shutdown hook which will perform a clean shutdown of Catalina if needed.
+     * 关闭钩子方法，防止意外中断
      */
     protected class CatalinaShutdownHook extends Thread {
 
