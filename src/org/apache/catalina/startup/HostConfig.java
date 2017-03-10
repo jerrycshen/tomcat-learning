@@ -405,6 +405,7 @@ public class HostConfig
             return;
         String files[] = appBase.list();
 
+        // 提供了3种部署方式
         deployDescriptors(appBase, files);
         deployWARs(appBase, files);
         deployDirectories(appBase, files);

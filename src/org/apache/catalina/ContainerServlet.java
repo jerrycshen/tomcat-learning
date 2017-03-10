@@ -72,6 +72,8 @@ package org.apache.catalina;
  * methods must be called by the container whenever a new instance of
  * this servlet is put into service.
  *
+ * 实现该接口，可以创建一个可以访问Catalina内部类的servlet类，可以设计一个更高级功能的servlet
+ *
  * @author Craig R. McClanahan
  * @version $Revision: 1.3 $ $Date: 2001/07/22 20:13:30 $
  */

@@ -863,6 +863,7 @@ public final class StandardWrapper
             // Special case class loader for a container provided servlet
             // 由于容器提供了一些用于访问servlet容器内部数据的专用servlet类，如果某个是这种类的话，
             // 需要换一种classloader进行加载
+            // ManagerServlet 就是这样的类
             if (isContainerProvidedServlet(actualClass)) {
                 classLoader = this.getClass().getClassLoader();
                 log(sm.getString
@@ -915,6 +916,7 @@ public final class StandardWrapper
             }
 
             // Special handling for ContainerServlet instances
+            // 如果实现了ContainerServlet的类，并且是容器提供的Servlet
             if ((servlet instanceof ContainerServlet) &&
                 isContainerProvidedServlet(actualClass)) {
 System.out.println("calling setWrapper");                  
