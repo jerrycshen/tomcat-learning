@@ -146,12 +146,14 @@ public class StandardHost
     /**
      * The <code>Deployer</code> to whom we delegate application
      * deployment requests.
+     * 使用委托该类进行部署相关操作
      */
     private Deployer deployer = new StandardHostDeployer(this);
 
 
     /**
      * deploy Context XML config files property.
+     * 指明了Host实例是否要部署一个Context实例的描述符文件。
      */
     private boolean deployXML = true;
 
@@ -173,6 +175,7 @@ public class StandardHost
 
     /**
      * The live deploy flag for this Host.
+     * 是否要周期性的检查一个新的部署
      */
     private boolean liveDeploy = true;
 
@@ -186,6 +189,7 @@ public class StandardHost
 
     /**
      * Unpack WARs property.
+     * 是否将WAR文件解压
      */
     private boolean unpackWARs = true;
 

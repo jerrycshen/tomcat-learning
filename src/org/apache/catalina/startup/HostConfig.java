@@ -129,6 +129,8 @@ public class HostConfig
     /**
      * The names of applications that we have auto-deployed (to avoid
      * double deployment attempts).
+     * 已经部署的Context实例会被添加HostConfig对象的deployed list中
+     * 并且Context实例是通过路径来标识的，所以必须唯一
      */
     protected ArrayList deployed = new ArrayList();
 
@@ -397,6 +399,7 @@ public class HostConfig
         if (debug >= 1)
             log(sm.getString("hostConfig.deploying"));
 
+        // %CATALINE_HOME%/webapps目录
         File appBase = appBase();
         if (!appBase.exists() || !appBase.isDirectory())
             return;
@@ -992,6 +995,7 @@ public class HostConfig
     /**
      * The background thread that checks for web application autoDeploy
      * and changes to the web.xml config.
+     * 如果支持动态部署，启动线程，监控是否有新应用要部署，或已经部署的WEB应用程序的web.xml是否有修改
      */
     public void run() {
 

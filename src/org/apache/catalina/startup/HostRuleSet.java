@@ -137,6 +137,9 @@ public class HostRuleSet extends RuleSetBase {
         digester.addSetProperties(prefix + "Host");
         digester.addRule(prefix + "Host",
                          new CopyParentClassLoaderRule(digester));
+        // 之前在Catalina中并没有看到，如何将Context和Host相关联起来
+        // 其实是这样的：当解析server.xml时，会通过监听器的形式，当Host的start方法启动，则会通知监听器
+        // 启动HostConfig
         digester.addRule(prefix + "Host",
                          new LifecycleListenerRule
                          (digester,

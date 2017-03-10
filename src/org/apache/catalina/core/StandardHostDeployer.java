@@ -260,6 +260,7 @@ public class StandardHostDeployer implements Deployer {
 
 
     /**
+     * 部署一个文件描述符
      * <p>Install a new web application, whose context configuration file
      * (consisting of a <code>&lt;Context&gt;</code> element) and (optional)
      * web application archive are at the specified URLs.</p>
